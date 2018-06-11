@@ -3,7 +3,7 @@
 	<form #searchForm="ngForm" (ngSubmit)="onClickAdd(searchForm)" autocomplete="off">
 		<div class="row ml-1 mt-4">				
 			<div class="col-3">
-				<input type="text" name="userName" ngModel class="form-control" #userName="ngModel" required placeholder="Search for a user">
+				<input type="text" name="userName" ngModel class="form-control" #userName="ngModel" required placeholder="Enter a Github user">
 			</div>
 			<div class="col-1">
 				<button type="submit" class="btn btn-success form-control addBtn" [disabled]="searchForm.form.invalid"> Add</button>

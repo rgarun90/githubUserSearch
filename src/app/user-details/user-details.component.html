@@ -16,8 +16,9 @@
 				<ul class="list-group list-group-flush" *ngFor="let repo of repoList">
 					<li class="list-group-item">
 						<h5><a [href]="repo.html_url" target="_blank"> {{repo.name}} </a></h5>
-						<p> {{repo.description}} </p>
-						<p><small>Updated on {{repo.pushed_at | date:'mediumDate'}} </small></p>
+						<p> {{repo.description}} </p>						
+						<p *ngIf="repo.pushed_at"><small> Updated on {{ repo.pushed_at | date:'mediumDate'}} </small></p>
+						<p *ngIf="!repo.pushed_at"><small> Created on {{ repo.created_at | date:'mediumDate'}} </small></p>						
 					</li>				
 				</ul>
 			</div>
