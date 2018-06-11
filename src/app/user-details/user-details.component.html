@@ -1,0 +1,47 @@
+<div class="container">
+	<!-- User layout -->
+	<div class="mt-3 ml-2 clearfix" *ngIf="userInfo">
+		<img [src]="userInfo.avatar_url" class="rounded-circle float-left" width="50px" height="50px">
+		<h4 class="mt-2"><a [href]="userInfo.html_url" class="ml-4" target="_blank"> {{userInfo.login}} </a></h4>
+		<a [routerLink]="['/']" class="float-right"> Go Back </a>
+	</div>	
+
+	<hr>
+
+	<div class="row mb-5">
+		<!-- Repositories Layout -->
+		<div class="col-6 border-right">
+			<h5 class="text-center">Repositories</h5>
+			<div *ngIf="repoList?.length > 0">
+				<ul class="list-group list-group-flush" *ngFor="let repo of repoList">
+					<li class="list-group-item">
+						<h5><a [href]="repo.html_url" target="_blank"> {{repo.name}} </a></h5>
+						<p> {{repo.description}} </p>
+						<p><small>Updated on {{repo.pushed_at | date:'mediumDate'}} </small></p>
+					</li>				
+				</ul>
+			</div>
+
+			<div class="text-center mt-5" *ngIf="repoList?.length == 0">
+				<p class="text-danger">Doesn't have any public repositories yet...</p>
+			</div>
+		</div>
+
+		<!-- Followers Layout -->
+		<div class="col-6">
+			<h5 class="text-center">Followers</h5>
+			<div *ngIf="followersList?.length > 0">
+				<ul class="list-group list-group-flush" *ngFor="let follower of followersList">
+					<li class="list-group-item">
+						<img [src]="follower.avatar_url" class="img-thumbnail float-left" width="50px" height="50px">
+						<h5 class="mt-2"><a [href]="follower.html_url" class="ml-4" target="_blank"> {{follower.login}} </a></h5>
+					</li>				
+				</ul>
+			</div>
+
+			<div class="text-center mt-5" *ngIf="followersList?.length == 0">
+				<p class="text-danger">Doesn't have any followers yet...</p>
+			</div>
+		</div>
+	</div>
+</div>

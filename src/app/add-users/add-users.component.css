@@ -1,0 +1,11 @@
+.addBtn {
+    width : 100px;
+}
+.card-text {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+.card-body{
+    padding : 1rem;
+    cursor : pointer;
+}

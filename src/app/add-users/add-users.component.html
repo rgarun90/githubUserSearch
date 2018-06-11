@@ -1,0 +1,48 @@
+<div class="container">	
+	<!-- Input Form -->
+	<form #searchForm="ngForm" (ngSubmit)="onClickAdd(searchForm)" autocomplete="off">
+		<div class="row ml-1 mt-4">				
+			<div class="col-3">
+				<input type="text" name="userName" ngModel class="form-control" #userName="ngModel" required placeholder="Search for a user">
+			</div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-success form-control addBtn" [disabled]="searchForm.form.invalid"> Add</button>
+			</div>
+		</div>
+	</form>
+
+	<!-- Alert message -->
+	<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert" *ngIf="!isExists">
+		<strong> {{errorMsg}} </strong> 
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="resetFlag()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<hr>
+
+	<!-- card Layout -->
+	<div class="row mb-5" *ngIf="usersList.length > 0">			
+		<div class="col-3" *ngFor="let usr of usersList">	
+			<div class="card border-info m-1">
+				<div class="mt-2 ml-2 clearfix">
+					<img [src]="usr.avatar_url" class="rounded-circle float-left" width='36px' height='36px'>
+					<h4> <a [href]="usr.html_url" class="card-link ml-2" target="_blank"> {{usr.login}} </a> </h4>
+				</div>
+				<div class="card-body"  [routerLink]="['/user', usr.login]">						
+					<p class="card-text"> <strong>Name 		: </strong> {{usr.name ? usr.name : 'NA'}} </p>
+					<p class="card-text"> <strong>Company  	: </strong> {{usr.company ? usr.company : 'NA'}} </p>
+					<p class="card-text"> <strong>Location 	: </strong> {{usr.location ? usr.location : 'NA'}} </p>
+					<p class="card-text"> <strong>Email 	: </strong> {{usr.email ? usr.email : 'NA'}} </p>
+					<hr>
+					<p class="card-text"> <strong>Followers : </strong> {{usr.followers}} </p>
+					<p class="card-text"> <strong>Following : </strong> {{usr.following}} </p>
+					<p class="card-text"> <strong>Member Since : </strong> {{usr.created_at | date:'mediumDate'}} </p>
+					<p class="card-text"> <strong>Public Repos : </strong> {{usr.public_repos}} </p>
+					<p class="card-text"> <strong>Public Gists : </strong> {{usr.public_gists}} </p>
+				</div>
+			</div>
+		</div>				
+	</div> <!-- End of Card Layout-->
+
+</div>
